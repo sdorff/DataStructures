@@ -22,11 +22,16 @@ using namespace std;
 		//track = NULL;//value that SeeNext uses
 	}
 	//adds student to list, takes in MNumber, firstName, lastName, birthday, and gpa
-	void List::AddItem(int data) {
+	void List::AddItem(int d) {
 		Node* n = new Node;
+		n->next = NULL;
+		n->data = d;
 		if (head == NULL) {
 			head = n;
 			size++;
+		}
+		else if (size == length) {
+			cout << "The list is full. \n";
 		}
 		else {
 			current = head;
@@ -135,12 +140,17 @@ using namespace std;
 	}*/
 	//prints out list
 	void List::Display() {
-		current = head;
-		while (current) {
-			cout << current->data << "->";
-			current = current->next;
+		if (head == NULL) {
+			cout << "The list is empty. \n";
 		}
-		cout << "X" << endl;
+		else {
+			current = head;
+			while (current) {
+				cout << current->data << "->";
+				current = current->next;
+			}
+			cout << "X" << endl;
+		}
 	}
 	//clears the list of all items
 	void List::ClearList() {
@@ -151,12 +161,9 @@ using namespace std;
 			current = current->next;
 			delete temp;
 		}
+		size = 0;
+		head = NULL;
 	}
-
-	int main() {
-		return 0;
-	}
-
 
 
 /*int main() {
