@@ -4,13 +4,13 @@
 
 class List {
 private:
-	Node* head;
-	Node* current;
-	Node* temp;
 	//Node* track;
 	int length;
 	int size = 0;
 public:
+	Node* head;
+	Node* current;
+	Node* temp;
 	//initial values
 	List();
 	List(int l);
