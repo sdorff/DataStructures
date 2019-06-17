@@ -2,18 +2,36 @@
 using namespace std;
 
 
-int arrayNValues[6] = { 10, 100, 500, 5000, 25000, 100000 };
+const int n = 10;
 
-int main{
+
+int main () {
 
 int tempLoc;
-const int sizeofArray = arrayNValues[0];
+const int sizeofArray = n;
 int sortingArray[sizeofArray];
+int length = n;
+int end = n;
 
-for (int i = 0, i < sizeofArray, i++) 
+for (int counter = length - 1; counter > 0; counter--)
 {
-	sortingArray[i] = rand() % 2 * sizeofArray;
-	cout << sortingArray[i] << endl;
+	for (int i = 0; i < sizeofArray; i++)
+	{
+	   sortingArray[i] = rand() % 20;
+
+		if (sortingArray[i] > sortingArray[i + 1])
+		{
+			tempLoc = sortingArray[i + 1];
+			sortingArray[i + 1] = sortingArray[1];
+			sortingArray[i] = tempLoc;
+		}
+		end--;
+	}
+
+	for (int i = 0; i < sizeofArray; i++)
+	{
+		cout << sortingArray[i] << endl;
+	}
 }
 
 }
