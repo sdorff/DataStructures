@@ -30,11 +30,10 @@ for (int counter = length - 1; counter > 0; counter--)
 		end--;
 
 	}
-
-	for (int i = 0; i < sizeofArray; i++)
-	{
-		cout << sortingArray[i] << endl;
-	}
+}
+for (int i = 0; i < sizeofArray; i++)
+{
+	cout << sortingArray[i] << endl;
 }
 
 }
