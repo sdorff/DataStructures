@@ -1,4 +1,4 @@
-#include <iostream> // Insertion sort
+/*#include <iostream> // Insertion sort
 using namespace std;
 
 
@@ -35,13 +35,13 @@ int main() {
 		for (int i = 0; i < sizeofArray; i++)
 			cout << sortingArray[i] << endl;
 	}
-}
+}*/
 
 
 
 
 
-/*#include <iostream> // Bubble sort
+#include <iostream> // Bubble sort
 using namespace std;
 
 
@@ -57,6 +57,7 @@ for (int i = 0; i < sizeofArray; i++)
 {
 
 	sortingArray[i] = rand() % 20;
+}
 
 	for (int i = n - 1; i > 0; i--)
 	{
@@ -70,11 +71,10 @@ for (int i = 0; i < sizeofArray; i++)
 
 
 	}
-	for (int i = 0; i < sizeofArray; i++)
-	{
-		cout << sortingArray[i] << endl;
-	}
+
+for (int i = 0; i < sizeofArray; i++)
+{
+	cout << sortingArray[i] << endl;
 }
 
 }
-*/
