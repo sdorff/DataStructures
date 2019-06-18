@@ -35,7 +35,7 @@ int main() {
 		for (int i = 0; i < sizeofArray; i++)
 			cout << sortingArray[i] << endl;
 	}
-}*/
+}
 
 
 
@@ -77,4 +77,4 @@ for (int i = 0; i < sizeofArray; i++)
 	cout << sortingArray[i] << endl;
 }
 
-}
+}*/
