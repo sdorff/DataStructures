@@ -1,5 +1,7 @@
 #include <iostream>
 
 int main() {
-	std::cout << "Hello World";
+	myClass* var1;
+	cout << var1->data;
+
 }
