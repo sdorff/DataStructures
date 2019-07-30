@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+#define COUNT 10 
 
 class Node {
 public:
@@ -115,6 +116,38 @@ Node* add(Node* n, int k)
 }
 
 //prints tree
+void print2DUtil(Node* root, int space)
+{
+	// Base case  
+	if (root == NULL)
+		return;
+
+	// Increase distance between levels  
+	space += COUNT;
+
+	// Process right child first  
+	print2DUtil(root->right, space);
+
+	// Print current node after space  
+	// count  
+	cout << endl;
+	for (int i = COUNT; i < space; i++)
+		cout << " ";
+	cout << root->data << "\n";
+
+	// Process left child  
+	print2DUtil(root->left, space);
+}
+
+// Wrapper over print2DUtil()  
+void print2D(Node* root)
+{
+	// Pass initial space count as 0  
+	print2DUtil(root, 0);
+}
+
+
+
 void preOrder(Node* root) {
 	if (root != NULL) {
 		cout << root->data << " ";
@@ -144,7 +177,7 @@ int main() {
 	*/
 	cout << "Preorder traversal of the "
 		"constructed AVL tree is \n";
-	preOrder(root);
+	print2D(root);
 
 	return 0;
 }
