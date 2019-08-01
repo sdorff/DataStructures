@@ -127,7 +127,7 @@ void preOrder(Node* root) {
 int main() {
 	Node* root = NULL;
 
-
+	cout << 
 	root = add(root, 10);
 	root = add(root, 20);
 	root = add(root, 30);
@@ -135,13 +135,6 @@ int main() {
 	root = add(root, 50);
 	root = add(root, 25);
 
-	/* The constructed AVL Tree would be
-				30
-			/ \
-			20 40
-			/ \ \
-		10 25 50
-	*/
 	cout << "Preorder traversal of the "
 		"constructed AVL tree is \n";
 	preOrder(root);
