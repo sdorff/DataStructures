@@ -2,6 +2,8 @@
 #include <array>
 #include <cstdlib>
 #include <ctime>
+#include <chrono>
+typedef std::chrono::high_resolution_clock Clock;
 
 using namespace std;
 
@@ -130,6 +132,7 @@ void QuickSort(int* a, int leftstart, int rightend) {
 		QuickSort(a, part + 1, rightend);
 	}
 }
+
 //returns the max value in the array
 int GetMax(int* a, int n) {
 	int max = a[1];
@@ -141,32 +144,7 @@ int GetMax(int* a, int n) {
 	return max; 
 }
 
-/*void CountingSort(int* a, int n) {
-	int* out = new int[n + 1];
-	int max = GetMax(a, n);
-	int* count = new int[max + 1];
-	//set count array to 0 for every value
-	for (int i = 0; i <= max; i++) {
-		count[i] = 0;     
-	}
-	//increases the count number in array
-	for (int i = 1; i <= n; i++) {
-		count[a[i]]++;     
-	}
-	//finds the frequency
-	for (int i = 1; i <= max; i++) {
-		count[i] += count[i - 1];     
-	}
-	//orders values in out array
-	for (int i = n; i >= 1; i--) {
-		out[count[a[i]]] = a[i];
-		count[a[i]] -= 1; 
-	}
-	//transfers out array to original array
-	for (int i = 1; i <= n; i++) {
-		a[i] = out[i]; 
-	}
-}*/
+
 
 void CountingSort(int* a, int n, int range) {
 	int* out = new int[n];
@@ -181,14 +159,14 @@ void CountingSort(int* a, int n, int range) {
 	for (i = 0; i < n; i++) {
 		count[(a[i])]++;
 	}
-
+	
 	//changes count to hold actual value
-	for (i = 1; i <= range; ++i) {
+	for (i = 1; i < range; ++i) {
 		count[i] += count[i - 1];
 	}
 
 	// puts values in out array
-	for (i = 0; a[i]; ++i) {
+	for (i = 0; i < n; ++i) {
 		out[count[a[i]] - 1] = a[i];
 		--count[a[i]];
 	}
@@ -200,34 +178,114 @@ void CountingSort(int* a, int n, int range) {
 }
 
 
-void radixsort(int* a, int n)
-{
-	// finds the max digit number
+// counting sort for radix goes through tens 
+void RadixCountSort(int* a, int n, int range) {
+	int* out = new int[n]; // output array 
+	int count[10] = { 0 };
+
+	// counts occurances 
+	for (int i = 0; i < n; i++) {
+		count[(a[i] / range) % 10]++;
+	}
+
+	// places each number where it belongs  
+	for (int i = 1; i < 10; i++) {
+		count[i] += count[i - 1];
+	}
+
+	//orders the array into out
+	for (int i = n - 1; i >= 0; i--) {
+		out[count[(a[i] / range) % 10] - 1] = a[i];
+		count[(a[i] / range) % 10]--;
+	}
+
+	// puts out into a
+	for (int i = 0; i < n; i++) {
+		a[i] = out[i];
+	}
+}
+ 
+// Radix Sort 
+void RadixSort(int* a, int n) {
+	// gets the max number in the array
 	int m = GetMax(a, n);
 
-	//calls counting sort
+	//call radix counting sort
 	for (int range = 1; m / range > 0; range *= 10) {
-		CountingSort(a, n, range);
+		RadixCountSort(a, n, range);
 	}
 }
 
 
-int main(){
+/*int main(){
 	int n;
+	int s;
 	srand(time(0));
 	cout << "How many elements do you want in your array? \n";
 	cin >> n;
+	cout << "Enter the number of the sorting method you want to use. \n1. Bubble Sort \n2. Insertion Sort \n3. Merge Sort \n4. Quick Sort \n5. Counting Sort \n6. Radix Sort \n";
+	cin >> s;
 
 	int* arr = new int[n];
 	for (int i = 0; i < n; i++) {
 		arr[i] = rand() % (2 * n);
 	}
 
-	Print(arr, n);
+	//auto t1 = Clock::now();
+	if (s == 1) {
+		Print(arr, n);
+		auto t1 = Clock::now();
+		BubbleSort(arr, n);
+		auto t2 = Clock::now();
+		cout << "Time: " << std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() << " nanoseconds \n";
+		Print(arr, n);
+	}
+	else if (s == 2) {
+		Print(arr, n);
+		auto t1 = Clock::now();
+		InsertionSort(arr, n);
+		auto t2 = Clock::now();
+		cout << "Time: " << std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() << " nanoseconds \n";
+		Print(arr, n);
+	}
+	else if (s == 3) {
+		Print(arr, n);
+		auto t1 = Clock::now();
+		MergeSort(arr, 0, n);
+		auto t2 = Clock::now();
+		cout << "Time: " << std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() << " nanoseconds \n";
+		Print(arr, n);
+	}
+	else if (s == 4) {
+		Print(arr, n);
+		auto t1 = Clock::now();
+		QuickSort(arr, 0, n);
+		auto t2 = Clock::now();
+		cout << "Time: " << std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() << " nanoseconds \n";
+		Print(arr, n);
+	}
+	else if (s == 5) {
+		Print(arr, n);
+		auto t1 = Clock::now();
+		CountingSort(arr, n, n * 2);
+		auto t2 = Clock::now();
+		cout << "Time: " << std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() << " nanoseconds \n";
+		Print(arr, n);
+	}
+	else if (s == 6) {
+		Print(arr, n);
+		auto t1 = Clock::now();
+		RadixSort(arr, n);
+		auto t2 = Clock::now();
+		cout << "Time: " << std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() << " nanoseconds \n";
+		Print(arr, n);
+	}
+	else {
+		cout << "Invalid input \n";
+	}
 
-	CountingSort(arr, n, n * 2);
-
-	Print(arr, n);
+	//auto t2 = Clock::now();
+	//cout << "Time: " << std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() << " nanoseconds \n";
 
 	return 0;
-}
+}*/

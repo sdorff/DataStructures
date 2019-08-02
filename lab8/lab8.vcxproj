@@ -20,9 +20,10 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{F222A1F7-38B4-4512-A693-F0A67F90C8AE}</ProjectGuid>
-    <RootNamespace>Lab6</RootNamespace>
+    <ProjectGuid>{F64F5EC0-D56B-4D6A-8345-1A4036B2CFC7}</ProjectGuid>
+    <RootNamespace>lab8</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Lab8</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -123,12 +124,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="PriorityQueue.cpp" />
-    <ClCompile Include="Heap.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Heap.h" />
-    <ClInclude Include="PriorityQueue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
