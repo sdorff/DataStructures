@@ -116,34 +116,24 @@ Node* add(Node* n, int k)
 }
 
 //prints tree
-void print2DUtil(Node* root, int space)
-{
-	// Base case  
-	if (root == NULL)
+void printUsed(Node* r, int x)
+{ 
+	if (r == NULL)
 		return;
-
-	// Increase distance between levels  
-	space += COUNT;
-
-	// Process right child first  
-	print2DUtil(root->right, space);
-
-	// Print current node after space  
-	// count  
+	x += COUNT;
+	printUsed(r->right, x); 
 	cout << endl;
-	for (int i = COUNT; i < space; i++)
-		cout << " ";
-	cout << root->data << "\n";
 
-	// Process left child  
-	print2DUtil(root->left, space);
+	for (int i = COUNT; i < x; i++) {
+		cout << " ";
+	}
+
+	cout << r->data << endl;  
+	printUsed(r->left, x);
 }
 
-// Wrapper over print2DUtil()  
-void print2D(Node* root)
-{
-	// Pass initial space count as 0  
-	print2DUtil(root, 0);
+void print(Node* r) {
+	printUsed(r, 0);
 }
 
 
@@ -159,18 +149,34 @@ void preOrder(Node* root) {
 
 int main() {
 	Node* root = NULL;
-
-	cout << "Input the number of what action you want to perform: " << endl;
-	cout << ""
-	root = add(root, 10);
-	root = add(root, 20);
-	root = add(root, 30);
-	root = add(root, 40);
-	root = add(root, 50);
-	root = add(root, 25);
-
+	int c;
+	int x;
+	int l = 1;
 	
-	print2D(root);
+
+	while (l != 0) {
+		cout << "Input the number of what action you want to perform: " << endl;
+		cout << "1. Add item to the tree \n2. Remove item from the tree \n3. Print tree \n4. Exit the program \n";
+		cin >> c;
+		if (c == 1) {
+			cout << "Enter the integer you would like to add to the tree: " << endl;
+			cin >> x;
+			root = add(root, x);
+		}
+		else if (c == 2) {
+
+		}
+		else if (c == 3) {
+			print(root);
+		}
+		else if (c == 4) {
+			l = 0;
+		}
+		else {
+			cout << "Invalid input." << endl;
+		}
+	}
+	
 
 	return 0;
 }
