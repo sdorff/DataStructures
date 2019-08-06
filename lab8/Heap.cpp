@@ -4,7 +4,7 @@
 using namespace std;
 
 
-void Heap::display() {
+void Heap::display(int n) {
 	int i;
 	if (n == 0) {
 		cout << "Heap is empty";
@@ -29,7 +29,7 @@ void Heap::insert(int num, int location) {
 	}
 	a[0] = num;
 }
-void Heap::del(int num)
+void Heap::del(int num, int &n)
 {
 	int left, right, i, temp, par;
 

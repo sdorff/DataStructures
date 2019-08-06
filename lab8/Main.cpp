@@ -38,9 +38,8 @@ using namespace std;
 
 int main() {
 	int val, i, x, num;
+	int n = 0;
 	Heap data;
-
-	cout << "Enter the integer value"
 
 	while (1)
 	{
@@ -57,10 +56,10 @@ int main() {
 		case 2:
 			cout << "Enter value to delete";
 			cin >> x;
-			data.del(x);
+			data.del(x, n);
 			break;
 		case 3:
-			data.display();
+			data.display(n);
 			break;
 		case 4:
 			exit(0);

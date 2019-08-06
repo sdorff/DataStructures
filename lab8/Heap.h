@@ -6,8 +6,7 @@ class Heap {
 private:
 	int a[100];
 public:
-	int n = 0;
-	void display();
+	void display(int n);
 	void insert(int num, int location);
-	void del(int num);
+	void del(int num, int &n);
 };
