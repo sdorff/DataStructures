@@ -4,92 +4,88 @@
 using namespace std;
 
 
-void PriorityQueue::insert(int ele, int prior)
-{
-	nn = (struct node*)malloc(sizeof(struct node));
-	nn->data = ele;
-	nn->pr = prior;
-	nn->next = NULL;
-	if (front == NULL)
-	{
-		front = nn;
-		rear = nn;
-		rear->next = NULL;
+void PriorityQueue::add(int element, int priority) {
+
+	m = (struct node*)malloc(sizeof(struct node));
+
+	m->data = element;
+	m->p = priority;
+	m->next = NULL;
+
+	if (front == NULL) {
+		front = m;
+		back = m;
+		back->next = NULL;
 	}
-	else
-	{
-		rear->next = nn;
-		rear = nn;
-		rear->next = NULL;
+	else {
+		back->next = m;
+		back = m;
+		back->next = NULL;
 	}
 	//sort();
 }
-void PriorityQueue::sort()
-{
-	cur = front;
-	if (cur == rear)
-	{
-		cur = cur;
-		rear = rear;
+void PriorityQueue::sorting() {
+	current = front;
+
+	if (current == back) {
+		current = current;
+		back = back;
 	}
-	else
-	{
-		for (i = cur; i != rear; i = i->next)
-		{
-			for (j = i; j != rear; j = j->next)
-			{
+	else {
+		for (i = current; i != back; i = i->next) {
+
+			for (j = i; j != back; j = j->next) {
 				temp = (struct node*)malloc(sizeof(struct node));
 				k = j->next;
-				if (j->pr >= k->pr)
-				{
+
+				if (j->p >= k->p) {
+
 					temp->data = j->data;
-					temp->pr = j->pr;
+					temp->p = j->p;
 					j->data = k->data;
-					j->pr = k->pr;
+					j->p = k->p;
 					k->data = temp->data;
-					k->pr = temp->pr;
+					k->p = temp->p;
 				}
 			}
 		}
 	}
 }
-void PriorityQueue::del()
-{
-	sort();
-	if (front == NULL)
-	{
-		cout << "\n * Priority Queue is Empty * \n ";
+
+void PriorityQueue::remove() {
+	sorting();
+
+	if (front == NULL) {
+
+		cout << "\n * No items in the queue * \n ";
 	}
-	else if (front == rear)
-	{
-		cout << " [" << front->data << "," << front->pr << "]" << " is deleted" << endl;
-		front = rear = NULL;
+	else if (front == back) {
+
+		cout << "(" << front->data << ", " << front->p << ")" << " has been removed \n";
+		front = back = NULL;
 	}
-	else
-	{
-		cout << " [" << front->data << "," << front->pr << "]" << " is deleted" << endl;
+
+	else {
+
+		cout << "(" << front->data << ", " << front->p << ")" << " has been removed \n";
 		front = front->next;
 	}
 }
-void PriorityQueue::display()
-{
-	sort();
-	cur = front;
-	if (cur == NULL)
-	{
-		cout << endl << " * Priority Queue is Empty *" << endl;
+void PriorityQueue::print() {
+	sorting();
+	current = front;
+
+	if (current == NULL) {
+		cout << endl << " * No items in the queue *" << endl;
 	}
-	else if (front == rear)
-	{
-		cout << " [" << front->data << "," << front->pr << "]" << endl;
+	else if (front == back) {
+		cout << "(" << front->data << ", " << front->p << ")" << endl;
 	}
-	else
-	{
-		cout << endl << " Elements in Priority Queue are :" << endl;
-		while (cur != NULL)
-		{
-			cout << " [" << cur->data << "," << cur->pr << "]" << endl;
-			cur = cur->next;
+	else {
+		cout << endl << "Items in the queue: " << endl;
+		while (current != NULL) {
+			cout << "(" << current->data << ", " << current->p << ")" << endl;
+			current = current->next;
 		}
 	}
 	cout << endl;

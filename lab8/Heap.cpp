@@ -4,81 +4,85 @@
 using namespace std;
 
 
-void Heap::display(int n) {
-	int i;
+void Heap::print(int n) {
+
 	if (n == 0) {
-		cout << "Heap is empty";
+
+		cout << "Empty heap";
+
 	}
 	else {
-		for (i = 0; i < n; i++) {
-			cout << a[i] << "->";
+		for (int i = 0; i < n; i++) {
+
+			cout << x[i] << "->";
+
 		}
-		cout << endl;
+		cout << "X" << endl;
 	}
 }
-void Heap::insert(int num, int location) {
-	int pnode;
-	while (location > 0) {
-		pnode = (location - 1) / 2;
-		if (num <= a[pnode]) {
-			a[location] = num;
+void Heap::add(int data, int loc) {
+	int temp;
+	while (loc > 0) {
+		temp = (loc - 1) / 2;
+		if (data <= x[temp]) {
+			x[loc] = data;
 			return;
 		}
-		a[location] = a[pnode];
-		location = pnode;
+		x[loc] = x[temp];
+		loc = temp;
 	}
-	a[0] = num;
+	x[0] = data;
 }
-void Heap::del(int num, int &n)
+void Heap::remove(int data, int &n)
 {
 	int left, right, i, temp, par;
 
 	for (i = 0; i < n; i++)
 	{
-		if (num == a[i])
+		if (data == x[i])
 			break;
 	}
-	if (num != a[i])
+	if (data != x[i])
 	{
-		cout << num << "not found in heap" << endl;
+		cout << data << "not found in heap" << endl;
 		return;
 	}
-	a[i] = a[n - 1];
+	x[i] = x[n - 1];
 	n = n - 1;
 	par = (i - 1) / 2;   /*find parent of node i */
-	if (a[i] > a[par])
+	if (x[i] > x[par])
 	{
-		insert(a[i], i);
+		add(x[i], i);
 		return;
 	}
 	left = 2 * i + 1; /*left child of i*/
 	right = 2 * i + 2; /* right child of i*/
 	while (right < n)
 	{
-		if (a[i] >= a[left] && a[i] >= a[right])
+		if (x[i] >= x[left] && x[i] >= x[right])
 			return;
-		if (a[right] <= a[left])
+		if (x[right] <= x[left])
 		{
-			temp = a[i];
-			a[i] = a[left];
-			a[left] = temp;
+			temp = x[i];
+			x[i] = x[left];
+			x[left] = temp;
 			i = left;
 		}
 		else
 		{
-			temp = a[i];
-			a[i] = a[right];
-			a[right] = temp;
+			temp = x[i];
+			x[i] = x[right];
+			x[right] = temp;
 			i = right;
 		}
 		left = 2 * i + 1;
 		right = 2 * i + 2;
 	}
-	if (left == n - 1 && a[i] < a[left])
+	if (left == n - 1 && x[i] < x[left])
 	{
-		temp = a[i];
-		a[i] = a[left];
-		a[left] = temp;
+		temp = x[i];
+		x[i] = x[left];
+		x[left] = temp;
 	}
 }
 /*int main() {

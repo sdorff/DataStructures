@@ -4,9 +4,9 @@ using namespace std;
 
 class Heap {
 private:
-	int a[100];
+	int x[100];
 public:
-	void display(int n);
-	void insert(int num, int location);
-	void del(int num, int &n);
+	void print(int n);
+	void add(int num, int location);
+	void remove(int num, int &n);
 };

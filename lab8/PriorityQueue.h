@@ -5,15 +5,15 @@ private:
 	struct node
 	{
 		int data;
-		int pr;
+		int p;
 		struct node* next;
-	}*front = NULL, * rear, * nn, * temp, * cur;
+	}*front = NULL, * back, * m, * temp, * current;
 
 	struct node* i, * j, * k;
 public:
 
-	void insert(int ele, int prior);
-	void sort();
-	void del();
-	void display();
+	void add(int element, int priority);
+	void sorting();
+	void remove();
+	void print();
 };
