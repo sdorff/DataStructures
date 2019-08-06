@@ -3,12 +3,14 @@
 #include "PriorityQueue.h"
 #include "Heap.h"
 using namespace std;
+#include <chrono>
+typedef std::chrono::high_resolution_clock Clock;
 
 
 	
 
 
-/*int main() {
+int main() {
 	int z;
 	cout << "Enter 1 for a priority queue or enter 2 for a heap" << endl;
 	cin >> z;
@@ -50,18 +52,18 @@ using namespace std;
 
 		while (1)
 		{
-			cout << "1.Insert " << " 2.Delete" << " 3.Display" << " 4.Quit" << endl << "Enter your choice : ";
+			cout << "1.Insert into heap \n2.Remove \n3.Display heap order \n4.Exit program \nEnter the integer of the operation you want to perform: \n";
 			cin >> num;
 			switch (num)
 			{
 			case 1:
-				cout << "Enter value to insert";
+				cout << "Element value: ";
 				cin >> val;
 				data.add(val, n);
 				n = n + 1;
 				break;
 			case 2:
-				cout << "Enter value to delete";
+				cout << "Element value: ";
 				cin >> x;
 				data.remove(x, n);
 				break;
@@ -77,9 +79,18 @@ using namespace std;
 		cout << "Please enter a valid input \n";
 	}
 	return 0;
-}*/
-
-int main() {
-
-	return 0;
 }
+
+/*int main() {
+	Heap data;
+	PriorityQueue list;
+	int temp;
+	auto t1 = Clock::now();
+	for (int i = 0; i < 800; i++) {
+		temp = rand() % 100 + 1;
+		data.add(temp, temp);
+	}
+	auto t2 = Clock::now();
+	cout << "Delta t2-t1: "<< std::chrono::duration_cast<std::chrono::nanoseconds>(t2 -t1).count() << " nanoseconds" << std::endl;
+	return 0;
+}*/
