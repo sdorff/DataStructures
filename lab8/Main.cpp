@@ -19,12 +19,10 @@ int main() {
 		int ch, priority, element;
 		PriorityQueue list;
 
-		do
-		{
+		do {
 			cout << "1.Insert into queue \n2.Remove \n3.Display queue \n4.Exit program \nEnter the integer of the operation you want to perform: \n";
 			cin >> ch;
-			switch (ch)
-			{
+			switch (ch) {
 			case 1:
 				cout << "Element value: ";
 				cin >> element;
@@ -50,12 +48,10 @@ int main() {
 		int n = 0;
 		Heap data;
 
-		while (1)
-		{
+		while (1) {
 			cout << "1.Insert into heap \n2.Remove \n3.Display heap order \n4.Exit program \nEnter the integer of the operation you want to perform: \n";
 			cin >> num;
-			switch (num)
-			{
+			switch (num) {
 			case 1:
 				cout << "Element value: ";
 				cin >> val;
