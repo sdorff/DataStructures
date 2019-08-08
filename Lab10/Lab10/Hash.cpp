@@ -126,69 +126,64 @@ void FourLetter() {
 
 	for (int i = 0; i < 100; i++) {
 		srand(i + time(0));
-		string str = randomString();
-		HT100->add(&str);
-		HT200->add(&str);
-		HT500->add(&str);
+		string s = randomString();
+		HT100->add(&s);
+		HT200->add(&s);
+		HT500->add(&s);
 	}
-	cout << setw(20) << "Hash table size" << setw(20) << "No.of Collision" << endl;
+	cout << setw(20) << "Table size" << setw(20) << "Number of collisions" << endl;
 	cout << setw(20) << HT100->size() << setw(20) << HT100->collision() << endl;
 	cout << setw(20) << HT200->size() << setw(20) << HT200->collision() << endl;
 	cout << setw(20) << HT500->size() << setw(20) << HT500->collision() << endl;
 }
 
-void WorldSeries() {
-
-}
-
 
 int main() {
 	HashTable* HT = new HashTable(10);
-	int option;
+	int c;
 	do {
 		cout << endl;
-		cout << "1. Add Item" << endl;
-		cout << "2. Remove Item" << endl;
-		cout << "3. Get Item" << endl;
-		cout << "4. Get Length" << endl;
-		cout << "5. Print table" << endl;
-		cout << "6. Quit" << endl;
-		cout << "Enter choice: ";
-		cin >> option;
-		if (option == 1) {
-			string* str = new string();
+		cout << "Select 1 to add an item" << endl;
+		cout << "Select 2 to remove an item" << endl;
+		cout << "Select 3 to get an item" << endl;
+		cout << "Select 4 to get the length" << endl;
+		cout << "Select 5 to print the hash table" << endl;
+		cout << "Select 6 to exit the program" << endl;
+		cout << "What is your selection: ";
+		cin >> c;
+		if (c == 1) {
+			string* s = new string();
 			cout << "Enter item name: ";
-			cin >> *str;
-			HT->add(str);
+			cin >> *s;
+			HT->add(s);
 		}
-		else if (option == 2) {
+		else if (c == 2) {
 			string str;
-			cout << "Enter item name to be removed: ";
+			cout << "Enter item name: ";
 			cin >> str;
 			if (HT->del(&str) != 0)
-				cout << "Item removed!" << endl;
+				cout << "Removed" << endl;
 			else
-				cout << "Item not found" << endl;
+				cout << "No item" << endl;
 		}
-		else if (option == 3) {
+		else if (c == 3) {
 			string str;
-			cout << "Enter item name to be searched: ";
+			cout << "Enter item name: ";
 			cin >> str;
 			if (HT->get(&str) != 0)
-				cout << "Item found" << endl;
+				cout << "Found" << endl;
 			else
-				cout << "Item not found" << endl;
+				cout << "No item" << endl;
 		}
-		else if (option == 4) {
+		else if (c == 4) {
 			cout << HT->length() << endl;
 		}
-		else if (option == 5) {
+		else if (c == 5) {
 			HT->print();
 		}
 
-	} while (option != 6);
+	} while (c != 6);
 
 	FourLetter();
-	WorldSeries();
 	return 0;
 }
